@@ -14,11 +14,11 @@ pipeline {
         //     }
         // }
         stage('Code Analysis') {
-            environment {
-                scannerHome = tool 'sq1'
-            }
             steps {
+                dir("${WORKSPACE}"){
+                // Run SonarQube analysis for Python
                 script {
+                    def scannerHome = tool name: 'scanner-name', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                     withSonarQubeEnv('sq1') {
                         bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" \
                             -Dsonar.projectKey=fast-api-sonar \
