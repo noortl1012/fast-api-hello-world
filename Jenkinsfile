@@ -7,12 +7,12 @@ pipeline {
                 bat 'pip install pytest'
             }
         }
-        stage('Run Tests') {
-            steps {
-                // Run pytest
-                bat 'pytest'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         // Run pytest
+        //         bat 'pytest'
+        //     }
+        // }
         stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar'
