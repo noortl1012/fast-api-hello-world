@@ -4,13 +4,13 @@ pipeline {
         stage('Setup') {
             steps {
                 // Install pytest (and other dependencies if needed)
-                sh 'pip install pytest'
+                bat 'pip install pytest'
             }
         }
         stage('Run Tests') {
             steps {
                 // Run pytest
-                sh 'pytest'
+                bat 'pytest'
             }
         }
         stage('Code Analysis') {
@@ -20,10 +20,9 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('Sonar') {
-                        sh "${scannerHome}/bin/sonar-scanner \
+                        bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" \
                             -Dsonar.projectKey=fast-api-sonar \
-                            -Dsonar.projectName=fast-api-sonar \
-                            "
+                            -Dsonar.projectName=fast-api-sonar"
                     }
                 }
             }
