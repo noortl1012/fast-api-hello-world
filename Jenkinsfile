@@ -2,6 +2,11 @@ node {
   stage('SCM') {
     checkout scm
   }
+  stage('Run Tests') {
+            steps {
+                sh 'pytest'
+            }
+        }
   stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar'
