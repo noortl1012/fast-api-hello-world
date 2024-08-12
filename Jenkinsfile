@@ -1,14 +1,12 @@
-node {
-  agent any
-//   stage('SCM') {
-//     checkout scm
-//   }
-  stage('Run Tests') {
+pipeline {
+    agent any
+    stages {
+        stage('Run Tests') {
             steps {
                 sh 'pytest'
             }
         }
-  stage('Code Analysis') {
+        stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar'
             }
@@ -23,4 +21,5 @@ node {
                 }
             }
         }
+    }
 }
