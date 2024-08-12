@@ -4,6 +4,7 @@ pipeline {
         stage('Verify JAVA_HOME') {
             steps {
                 bat 'echo %JAVA_HOME%'
+                bat 'dir %JAVA_HOME%\\bin'
             }
         }
         stage('Setup') {
