@@ -18,7 +18,7 @@ pipeline {
                 dir("${WORKSPACE}") {
                     // Run SonarQube analysis for Python
                     script {
-                        def scannerHome = tool name: 'scanner-name', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                        def scannerHome = tool name: 'sq1', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                         withSonarQubeEnv('sq1') {
                             bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" \
                                 -Dsonar.projectKey=fast-api-sonar \
