@@ -1,28 +1,23 @@
 pipeline {
     agent any
     stages {
+        stage('Verify JAVA_HOME') {
+            steps {
+                bat 'echo %JAVA_HOME%'
+            }
+        }
         stage('Setup') {
             steps {
-                // Install pytest (and other dependencies if needed)
                 bat 'pip install pytest'
             }
         }
-        // stage('Run Tests') {
-        //     steps {
-        //         // Run pytest
-        //         bat 'pytest'
-        //     }
-        // }
         stage('Code Analysis') {
             steps {
                 dir("${WORKSPACE}") {
-                    // Run SonarQube analysis for Python
                     script {
-                        def scannerHome = tool name: 'sq1', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                        def scannerHome = tool name: 'SonarQubeScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                         withSonarQubeEnv('sq1') {
-                            bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" \
-                                -Dsonar.projectKey=fast-api-sonar \
-                                -Dsonar.projectName=fast-api-sonar"
+                            bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" -Dsonar.projectKey=fast-api-sonar -Dsonar.projectName=fast-api-sonar"
                         }
                     }
                 }
