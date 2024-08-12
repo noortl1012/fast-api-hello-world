@@ -15,11 +15,11 @@ pipeline {
         // }
         stage('Code Analysis') {
             environment {
-                scannerHome = tool 'Sonar'
+                scannerHome = tool 'sq1'
             }
             steps {
                 script {
-                    withSonarQubeEnv('Sonar') {
+                    withSonarQubeEnv('sq1') {
                         bat "\"${scannerHome}\\bin\\sonar-scanner.bat\" \
                             -Dsonar.projectKey=fast-api-sonar \
                             -Dsonar.projectName=fast-api-sonar"
