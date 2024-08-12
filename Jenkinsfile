@@ -1,8 +1,8 @@
 node {
   agent any
-  stage('SCM') {
-    checkout scm
-  }
+//   stage('SCM') {
+//     checkout scm
+//   }
   stage('Run Tests') {
             steps {
                 sh 'pytest'
